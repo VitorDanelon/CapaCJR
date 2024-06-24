@@ -19,5 +19,12 @@ model Task{
   descricao String?
   is_active Boolean @default(true)
   created DateTime @default(now())
+  label   LABEL? @relation("LabelToTask", fields: [labelId], references: [id])
+  labelId Int?
 }
 
+model LABEL {
+  id   Int    @id @default(autoincrement())
+  text String
+  tasks Task[] @relation("LabelToTask")
+}
