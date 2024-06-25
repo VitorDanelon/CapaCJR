@@ -1,13 +1,13 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
 import { createLabelDto } from './dto/create-label.dto';
-import { updateLabelDto } from './dto/update-label.dto';
+import { UpdateLabelDto } from './dto/update-label.dto';
 import { LabelService } from './label.service';
 
 @Controller('label')
 export class LabelController {
     constructor(private readonly labelService: LabelService) {}
 
-    @Post()
+    @Post('create')
     async create(@Body() dtoCreateLabel: createLabelDto) {
         return await this.labelService.create(dtoCreateLabel);
     }
@@ -18,25 +18,21 @@ export class LabelController {
     }
 
     @Get(":id") 
-    async findLabel(@Param("id") id: string) {
-        return await this.labelService.findLabel(+id);
+    async findLabel(@Param("id", ParseIntPipe) id: number) {
+        return this.labelService.findLabel(+id);
     }
 
     @Patch(":id")
-    async updateLabelText(@Param("id") id: string, @Body() dtoUpdateLabel: updateLabelDto) {
-        try {
-            return await this.labelService.updateLabelText(+id, dtoUpdateLabel);
-        } catch(error) {
-            return error;
+    updateLabelText(
+        @Param("id", ParseIntPipe) id: number,
+        @Body() dtoUpdateLabel: UpdateLabelDto
+    ) {
+       return this.labelService.updateLabelText(id, dtoUpdateLabel); 
         }  
-    }
+        
     @Delete(":id")
-    async deleteLabel(@Param("id") id: string) {
-        try {
-            return await this.labelService.deleteLabel(+id);
-        } catch(error) {
-            return error; 
-        }
+    deleteLabel(@Param("id", ParseIntPipe) id: number) {
+        return this.labelService.deleteLabel(id);
     }
 
 

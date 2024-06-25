@@ -1,9 +1,4 @@
-import { PartialType, PickType } from "@nestjs/mapped-types";
-import { LabelEntity } from "src/entities/label.entity";
+import { PartialType } from "@nestjs/mapped-types";
+import { createLabelDto } from "./create-label.dto";
 
-export class updateLabelDto extends PartialType(
-    PickType(
-        LabelEntity, [
-            "text"
-        ]
-)){}
+export class UpdateLabelDto extends PartialType(createLabelDto) {}

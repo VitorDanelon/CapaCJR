@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { createLabelDto } from './dto/create-label.dto';
-import { updateLabelDto } from './dto/update-label.dto';
+import { UpdateLabelDto } from './dto/update-label.dto';
 
 @Injectable()
 export class LabelService {
@@ -26,7 +26,7 @@ export class LabelService {
         });
     }
 
-    async updateLabelText(id: number, dtoUpdateLabel: updateLabelDto) {
+    async updateLabelText(id: number, dtoUpdateLabel: UpdateLabelDto) {
         return await this.prisma.lABEL.update({
             where: {
                 id,

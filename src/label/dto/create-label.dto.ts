@@ -1,6 +1,14 @@
-import { PickType } from "@nestjs/mapped-types";
-import { LabelEntity } from "src/entities/label.entity";
+import { IsBoolean, IsOptional, IsString } from "class-validator";
 
-export class createLabelDto extends PickType(
-    LabelEntity, ["text"]
-){}
+export class createLabelDto {
+    @IsString()
+    nome: string;
+
+    @IsBoolean()
+    is_active: Boolean;
+
+    @IsString()
+    @IsOptional()
+    text: string;
+
+}
