@@ -1,11 +1,8 @@
-import { IsBoolean, IsOptional, IsString } from "class-validator";
+import { IsOptional, IsString } from "class-validator";
 
 export class createLabelDto {
     @IsString()
     nome: string;
-
-    @IsBoolean()
-    is_active: Boolean;
 
     @IsString()
     @IsOptional()

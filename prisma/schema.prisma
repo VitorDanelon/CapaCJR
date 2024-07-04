@@ -30,6 +30,6 @@ model LABEL {
   is_active Boolean @default(true)
   created DateTime @default(now())
   updated DateTime @updatedAt
-  text String
+  text String?
   tasks Task[] @relation("LabelToTask")
 }

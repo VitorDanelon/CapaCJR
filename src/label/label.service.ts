@@ -9,6 +9,7 @@ export class LabelService {
 
 
     async create(dtoCreateLabel: createLabelDto) {
+        console.log(dtoCreateLabel);
         return await this.prisma.lABEL.create({
             data: dtoCreateLabel
         });

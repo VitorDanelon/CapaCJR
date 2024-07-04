@@ -36,13 +36,9 @@ export class TasksController {
     return this.tasksService.updateTask(id, updateTaskDto);
   }
 
-  @Delete('concluded/:id')
+  @Delete(':id')
   remove(@Param('id', ParseIntPipe) id: number) {
     return this.tasksService.deleteTask(id);
   }
 
-  @Delete('allconcluded')
-  removeConcluded(){
-    return this.tasksService.deleteTaskConcluded();
-  }
 }

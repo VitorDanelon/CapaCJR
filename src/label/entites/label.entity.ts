@@ -2,10 +2,9 @@ import { LABEL } from "@prisma/client";
 
 export class LabelEntity implements LABEL {
     id: number;
-    text: string;
+    nome: string;
+    is_active: boolean;
     created: Date;
-    nome: string
-    descricao: string
-    is_active: boolean
-    
+    updated: Date;
+    text: string;
 }
